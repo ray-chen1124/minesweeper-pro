@@ -28,14 +28,23 @@
 
 未以實體手機、Safari、Firefox 或螢幕閱讀器驗證。手機測試為 Chromium 觸控模擬。GitHub Pages 部署與公開 HTTP 狀態另以實際工作流程結果記錄，不能由本機測試推論成功。
 
-## GitHub Pages 實際部署結果
+## GitHub Pages 部署與公開網址驗證
 
-程式已提交至 main，commit `da9fba51d1988966bce78a6d8e15cb3ae1aac46b`。工作流程 [Run #1](https://github.com/ray-chen1124/minesweeper-pro/actions/runs/39206853096) 實際執行，checkout 成功，`actions/configure-pages@v5` 失敗，之後的上傳與部署步驟未執行。可用連接器無法取得該步驟完整日誌，因此不將確切失敗原因當成已確認事實。
+目前狀態：**已成功部署，公開網址 HTTP 與內容檢查已通過**。
 
-尚未確認公開網站可存取。下一步：Repository → Settings → Pages → Source 選擇 **GitHub Actions**，然後在 Actions 重新執行部署。現有連接器沒有可修改 Pages 設定的操作。
+- 遊玩網址：<https://ray-chen1124.github.io/minesweeper-pro/>。
+- 驗證工作流程：[Run #3](https://github.com/ray-chen1124/minesweeper-pro/actions/runs/39208589153)。
+- 對應 commit：`12290b04ec375bfcc302496dc84ce13daba53539`。
+- 已確認結果：configure-pages、artifact 上傳、Deploy 與 `Verify public website` 步驟全部成功。
 
-## Pages 設定修正後
+### 公開網址檢查方法與實際結果
 
-使用者調整 Pages 設定並重新執行後，[Run #2](https://github.com/ray-chen1124/minesweeper-pro/actions/runs/39206971270) 已成功完成 configure、artifact 上傳與 Deploy，Run #1 的重試亦成功。此前失敗紀錄保留供開發歷程參考。
+GitHub runner 使用 curl 請求部署輸出的公開 URL，跟隨重新導向並以失敗 HTTP 狀態作為錯誤；失敗時最多重試六次。接著使用 Python 檢查回傳 HTML 包含遊戲標題、棋盤元素與內嵌地雷生成邏輯，且沒有外部 script 標籤。Run #3 中此步驟已實際執行並成功。
 
-目前執行環境及網頁讀取工具無法直接連線至公開網址，因此新增部署後的 `Verify public website` 步驟：由 GitHub runner 以 curl 請求部署輸出的 URL（失敗時最多重試六次），再檢查回傳 HTML 具備遊戲標題、棋盤與內嵌生成邏輯，且沒有外部 script 標籤。此步驟只驗證公開 HTTP 及檔案內容，互動功能仍以先前 Chromium 測試為依據。實際執行結果以最新 Actions run 的該步驟為準。
+此檢查驗證公開 HTTP 存取與 HTML 內容；遊戲互動仍以先前已執行的 Chromium／Playwright 測試為依據。當時工作環境及網頁讀取工具無法直接連線至公開網址，公開存取結果來自 GitHub runner，未宣稱在本機瀏覽器重新測試線上互動。
+
+### 部署歷程
+
+首次部署曾在 `actions/configure-pages@v5` 失敗。使用者調整 Pages 設定後，[Run #2](https://github.com/ray-chen1124/minesweeper-pro/actions/runs/39206971270) 與 [Run #1 的重試](https://github.com/ray-chen1124/minesweeper-pro/actions/runs/39206853096) 均部署成功；後續 Run #3 另確認公開網址及內容檢查成功。初次失敗為已解決的歷史紀錄，目前無需再啟用 Pages 或重新執行部署。
+
+本次僅更新 README.md 與 TESTING.md 的部署說明，並核對上述既有工作流程結果；未修改遊戲或重新執行遊戲測試。

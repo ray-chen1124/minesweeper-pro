@@ -19,10 +19,10 @@
 
 ## GitHub Pages
 
-`.github/workflows/pages.yml` 會在 main 更新時部署，只上傳 `index.html`。若初次執行無權自動啟用 Pages，請在 Repository → Settings → Pages → Source 選擇 **GitHub Actions**，再到 Actions 重新執行工作流程。也可直接在 Pages 選擇 Deploy from a branch → main → /(root)。
+網站已成功部署，可直接遊玩：<https://ray-chen1124.github.io/minesweeper-pro/>。
 
-Pages 設定調整後，部署工作流程已成功完成。工作流程另加入公開網址 HTTP 與遊戲內容檢查。
+已確認 [Run #3](https://github.com/ray-chen1124/minesweeper-pro/actions/runs/39208589153) 的部署與 `Verify public website` 步驟均成功。該步驟由 GitHub runner 請求公開網址，確認 HTTP 請求成功，並檢查回傳 HTML 包含遊戲標題、棋盤與內嵌遊戲邏輯，沒有外部 script 標籤。
 
-遊玩網址：<https://ray-chen1124.github.io/minesweeper-pro/>。最新部署與公開網址檢查結果可在 Actions 查看。
+目前 Pages Source 為 **GitHub Actions**。`.github/workflows/pages.yml` 在 main 更新時部署，只上傳 `index.html`，部署後自動檢查公開網址；含 `[skip ci]` 的文件提交不觸發此 push 工作流程。
 
 實際測試與限制見 [TESTING.md](TESTING.md)，開發過程見 [DEVELOPMENT.md](DEVELOPMENT.md)。
