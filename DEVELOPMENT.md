@@ -20,3 +20,7 @@
 ## 發布準備
 
 提供只部署單檔 index.html 的 GitHub Pages 工作流程。此文件為本次 AI 協作過程摘要，不是完整聊天逐字稿；原始需求與討論仍保留於此次對話。後續可在此補充手動驗收、修正原因及對應 commit。
+
+## 首次部署結果
+
+程式經 GitHub 連接器建立 commit 並更新 main。Run #1 已觸發，在 configure-pages 階段失敗；未完成上傳及公開發布。已於 README 與 TESTING.md 記錄需要選擇 Pages Source 並重新執行的後續步驟，未宣稱已公開部署。

@@ -21,6 +21,8 @@
 
 `.github/workflows/pages.yml` 會在 main 更新時部署，只上傳 `index.html`。若初次執行無權自動啟用 Pages，請在 Repository → Settings → Pages → Source 選擇 **GitHub Actions**，再到 Actions 重新執行工作流程。也可直接在 Pages 選擇 Deploy from a branch → main → /(root)。
 
+本次部署實際在 configure-pages 步驟失敗，尚未上線；請先完成上述 Pages 設定並重跑工作流程。
+
 預定網址：`https://ray-chen1124.github.io/minesweeper-pro/`。預定網址不代表已成功部署，請以 Actions 結果與 HTTP 實測為準。
 
 實際測試與限制見 [TESTING.md](TESTING.md)，開發過程見 [DEVELOPMENT.md](DEVELOPMENT.md)。

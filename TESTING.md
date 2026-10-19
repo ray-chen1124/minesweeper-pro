@@ -27,3 +27,9 @@
 ## 未執行範圍
 
 未以實體手機、Safari、Firefox 或螢幕閱讀器驗證。手機測試為 Chromium 觸控模擬。GitHub Pages 部署與公開 HTTP 狀態另以實際工作流程結果記錄，不能由本機測試推論成功。
+
+## GitHub Pages 實際部署結果
+
+程式已提交至 main，commit `da9fba51d1988966bce78a6d8e15cb3ae1aac46b`。工作流程 [Run #1](https://github.com/ray-chen1124/minesweeper-pro/actions/runs/39206853096) 實際執行，checkout 成功，`actions/configure-pages@v5` 失敗，之後的上傳與部署步驟未執行。可用連接器無法取得該步驟完整日誌，因此不將確切失敗原因當成已確認事實。
+
+尚未確認公開網站可存取。下一步：Repository → Settings → Pages → Source 選擇 **GitHub Actions**，然後在 Actions 重新執行部署。現有連接器沒有可修改 Pages 設定的操作。
