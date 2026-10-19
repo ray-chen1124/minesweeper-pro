@@ -33,3 +33,9 @@
 程式已提交至 main，commit `da9fba51d1988966bce78a6d8e15cb3ae1aac46b`。工作流程 [Run #1](https://github.com/ray-chen1124/minesweeper-pro/actions/runs/39206853096) 實際執行，checkout 成功，`actions/configure-pages@v5` 失敗，之後的上傳與部署步驟未執行。可用連接器無法取得該步驟完整日誌，因此不將確切失敗原因當成已確認事實。
 
 尚未確認公開網站可存取。下一步：Repository → Settings → Pages → Source 選擇 **GitHub Actions**，然後在 Actions 重新執行部署。現有連接器沒有可修改 Pages 設定的操作。
+
+## Pages 設定修正後
+
+使用者調整 Pages 設定並重新執行後，[Run #2](https://github.com/ray-chen1124/minesweeper-pro/actions/runs/39206971270) 已成功完成 configure、artifact 上傳與 Deploy，Run #1 的重試亦成功。此前失敗紀錄保留供開發歷程參考。
+
+目前執行環境及網頁讀取工具無法直接連線至公開網址，因此新增部署後的 `Verify public website` 步驟：由 GitHub runner 以 curl 請求部署輸出的 URL（失敗時最多重試六次），再檢查回傳 HTML 具備遊戲標題、棋盤與內嵌生成邏輯，且沒有外部 script 標籤。此步驟只驗證公開 HTTP 及檔案內容，互動功能仍以先前 Chromium 測試為依據。實際執行結果以最新 Actions run 的該步驟為準。

@@ -31,3 +31,17 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Verify public website
+        env:
+          SITE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          curl --fail --location --silent --show-error --retry 6 --retry-delay 10 --retry-all-errors "$SITE_URL" -o /tmp/published-index.html
+          python3 - <<'PY'
+          from pathlib import Path
+          html = Path('/tmp/published-index.html').read_text()
+          assert '<title>Minesweeper Pro' in html, 'Unexpected page title'
+          assert 'function generate(first)' in html, 'Game logic missing'
+          assert 'id="board"' in html, 'Game board missing'
+          assert '<script src=' not in html, 'Unexpected external script'
+          print('PASS: public website HTTP request succeeded; game title, board, and inline logic present.')
+          PY

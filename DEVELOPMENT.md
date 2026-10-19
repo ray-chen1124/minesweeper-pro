@@ -24,3 +24,7 @@
 ## 首次部署結果
 
 程式經 GitHub 連接器建立 commit 並更新 main。Run #1 已觸發，在 configure-pages 階段失敗；未完成上傳及公開發布。已於 README 與 TESTING.md 記錄需要選擇 Pages Source 並重新執行的後續步驟，未宣稱已公開部署。
+
+## Pages 設定修正與成功發布
+
+使用者調整設定後，Run #2 與 Run #1 的重試均部署成功。為補足公開存取驗證，在工作流程加入部署後 HTTP 及 HTML 內容檢查，並更新 README 遊玩連結。
